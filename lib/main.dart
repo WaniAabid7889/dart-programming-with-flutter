@@ -40,7 +40,54 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Container(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+               width: 50,
+              height: 100,
+              color: Colors.blue,
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Container(
+              width: 50,
+              height: 100,
+              color: Colors.green,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: Text("Padding vs Margin"),
+                margin: EdgeInsets.all(11),
+                width: 50,
+                height: 100,
+                color: Colors.blueGrey,
+              ),
+            ),
+          )
+        ],
+
+      ),
+    );
+  }
+}
+
+
+
+
+
+/*
+
+
+
+ body: Container(
         width: double.infinity,
         height: double.infinity,
         color: Colors.blue.shade50,
@@ -68,15 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-    );
-  }
-}
 
-
-
-
-
-/*
 ListView.separated
   var arrNames = ['Abid','Hssain','Sahil','Nazil','Farddin','Amir','Ali','Rohit','Anayat','Anaya'];
 
