@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
+
+
+void main(){
+  runApp(MyApp());
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,16 +33,54 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  final String? text = "Hello Flutter Devs";
   Widget build(BuildContext context) {
 
-    var arrNames = ['Abid','Hssain','Sahil','Nazil','Farddin','Amir','Ali','Rohit','Anayat','Anaya'];
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(widget.title),
+  return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Colors.blue.shade50,
+        child: Center(
+          child: Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              color: Colors.blueGrey,
+            //  borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                width: 2,
+                color: Colors.black
+              ),
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 11,
+                  color: Colors.green,
+                  spreadRadius: 11,
+                )
+              ],
+              shape: BoxShape.circle
+
+            ),
+          ),
         ),
-        body: Center(
+      ),
+    );
+  }
+}
+
+
+
+
+
+/*
+ListView.separated
+  var arrNames = ['Abid','Hssain','Sahil','Nazil','Farddin','Amir','Ali','Rohit','Anayat','Anaya'];
+
+body: Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListView.separated(itemBuilder: (context,index){
@@ -68,11 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-    );
-  }
-}
-
-/*
 
 listView.separated
 
