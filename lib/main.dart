@@ -10,13 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Navbar'),
     );
   }
 }
@@ -33,29 +33,212 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   final String? text = "Hello Flutter Devs";
   Widget build(BuildContext context) {
+
+    var arrNames = ['Abid','Hssain','Sahil','Nazil','Farddin','Amir','Ali','Rohit','Anayat','Anaya'];
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-     body: OutlinedButton(
-         onPressed: (){
-           print("Outlined Button");
-         },
-         child: Text("Click Here..!"),
-     ),
-     
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(widget.title),
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.separated(itemBuilder: (context,index){
+              return Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(arrNames[index],style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,),),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(arrNames[index],style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,),),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(arrNames[index],style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,),),
+                  ),
+                ],
+              );
+            },
+              itemCount: arrNames.length,
+              separatorBuilder: (context,index){
+                return Divider(height: 20,thickness: 4,);
+              },
+            ),
+          ),
+        ),
     );
   }
 }
 
-
-
-
-
-
 /*
-button visit
+
+listView.separated
+
+child: ListView.separated(itemBuilder: (context,index){
+              return Text(arrNames[index],style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,),);
+            },
+              itemCount: arrNames.length,
+              separatorBuilder: (context,index){
+                  return Divider(height: 20,thickness: 4,);
+              },
+            ),
+
+listView.Builder
+
+child: ListView.builder(itemBuilder: (context,index){
+              return Text(arrNames[index],style: TextStyle(fontWeight: FontWeight.w500,fontSize: 21,),);
+            },
+              itemCount: arrNames.length,
+              itemExtent: 200,
+              scrollDirection: Axis.horizontal,
+            ),
+
+
+ListView widgets
+child: ListView(
+              scrollDirection: Axis.horizontal,
+              reverse: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('One',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Two',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                ),Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Three',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                ),Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Four',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                ),
+              ],
+            ),
+ScrollView Widgets
+ body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 11),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.blue,
+                          margin: EdgeInsets.only(right: 11),
+
+                        ),
+                        Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.yellow,
+                          margin: EdgeInsets.only(right: 11),
+                        ),Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.red,
+                          margin: EdgeInsets.only(right: 11),
+                        ),Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.green,
+                          margin: EdgeInsets.only(right: 11),
+                        ),Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.blueGrey,
+                          margin: EdgeInsets.only(right: 11),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 200,
+                  color: Colors.blue,
+                  margin: EdgeInsets.only(bottom: 11),
+                ),
+                Container(
+                  height: 200,
+                  color: Colors.yellow,
+                  margin: EdgeInsets.only(bottom: 11),
+                ),
+                Container(
+                  height: 200,
+                  color: Colors.pink,
+                  margin: EdgeInsets.only(bottom: 11),
+                ),
+                Container(
+                  height: 200,
+                  color: Colors.deepPurple,
+                  margin: EdgeInsets.only(bottom: 11),
+                )
+              ],
+            ),
+          ),
+      ),
+
+InkWell widget
+
+body: Center(
+      child: InkWell(
+        onTap: (){
+          print("tapped on container");
+        },
+        onLongPress: (){
+          print("long pressed on container");
+        },
+        onDoubleTap: (){
+          print("double tap in container");
+        },
+        child: Container(
+          width: 200,
+          height: 200,
+          color: Colors.amber,
+          child: Center(
+               child: InkWell(
+                 onTap: (){
+                   print("text widget tapped");
+                 },
+                child:Text("Click here",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+               ),
+          ),
+        ),
+      ),
+
+    ),
+
+Row Columns Widget 
+ body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+         Text('Choice your product ',
+           style: TextStyle(fontSize: 18,backgroundColor: Colors.blue,height: 3),
+         ),
+         OutlinedButton(
+             onPressed: (){print("welcome to grid system");},
+             child: Text("click here")
+         ),
+
+       ],
+     )
+
+
+images widget
+  body: Center(
+  child: Image.asset('assets/images/images.jpg'),
+  ),
+button widget
  body: TextButton(
         onPressed: (){
           print("Text Button Click");
@@ -71,13 +254,21 @@ button visit
          },
          child: Text("Click Here..!"),
      ),
+     
+     
+  body: OutlinedButton(
+         onPressed: (){
+           print("Outlined Button");
+         },
+         child: Text("Click Here..!"),
+     ),
 
-text visit
+text widget
  body: Text(
         "$text",
         style: TextStyle(color: Colors.blueGrey,fontSize: 30,fontFamily: "Arial",fontWeight: FontWeight.bold),
    ),
-container visit
+container widget
  body: Center(
        child: Container(
          width: 150,
