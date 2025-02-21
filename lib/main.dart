@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main(){
   runApp(MyApp());
 }
@@ -13,7 +12,11 @@ class MyApp extends StatelessWidget{
       title: 'FlutterApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey)
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        textTheme: TextTheme(
+          headlineMedium: TextStyle(fontSize:15, fontFamily:'Montserrat', color: Colors.green),
+          headlineSmall: TextStyle(fontSize: 12, fontFamily:'Montserrat', color: Colors.blueGrey),
+        )
       ),
       home: MyHomePage(),
     );
@@ -37,7 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Home Page "),
       ),
-      body: Center(child: Text('Hello Aabid',style: TextStyle(fontFamily:'Montserrat' ),)),
+      body: Column(
+          children: [
+            Text('Contact',style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.blueGrey),),
+            Text('leads',style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.green),),
+            Text('create new leads',style: Theme.of(context).textTheme.headlineSmall),
+            // Text('Check our UI is working or not', style: mTextStyle13(),)
+          ]
+      ),
     );
   }
 }
