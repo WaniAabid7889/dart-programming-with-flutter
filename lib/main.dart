@@ -1,91 +1,91 @@
 import 'package:flutter/material.dart';
 
 
-
-
 void main(){
   runApp(MyApp());
 }
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
+class MyApp extends StatelessWidget{
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Demo',
+      title: 'FlutterApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey)
       ),
-      home: const MyHomePage(title: 'Navbar'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() {
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-
-  return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text("Home Page "),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-               width: 50,
-              height: 100,
-              color: Colors.blue,
+      body: Center(
+          child: CircleAvatar(
+            // child: Text('Name',style: TextStyle(color: Colors.blue,fontSize: 12),),
+            child: Column(
+              children: [
+                Container(
+                    width: 100,
+                    height: 130,
+                    child: Image.asset('assets/images/boy.jpg'),
+                ),
+                Text('Name',style: TextStyle(color: Colors.green,fontSize: 14),),
+              ],
             ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
-              width: 50,
-              height: 100,
-              color: Colors.green,
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Text("Padding vs Margin"),
-                margin: EdgeInsets.all(11),
-                width: 50,
-                height: 100,
-                color: Colors.blueGrey,
-              ),
-            ),
-          )
-        ],
-
+            // backgroundImage: AssetImage('assets/images/boy.jpg'),
+            backgroundColor: Colors.blue,
+            // radius: 100,
+            // minRadius: 10,
+            maxRadius: 100,
+        ),
       ),
     );
   }
 }
+
 
 
 
 
 
 /*
+//Circleavatar widget
 
 
+// ListView.separated
+
+var arrNames = ['Abid','Hssain','Sahil','Nazil','Farddin','Amir','Ali','Rohit','Anayat','Anaya'];
+body: ListView.separated(itemBuilder: (context,index){
+        return ListTile(
+          leading: Text('${index+1}'),
+          title: Text(arrNames[index]),
+          subtitle: Text('Number'),
+          trailing: Icon(Icons.add),
+        );
+      },
+        itemCount: arrNames.length,
+        separatorBuilder: (context,index){
+          return Divider(height: 50,thickness: 1);
+        },
+      )
 
  body: Container(
         width: double.infinity,
