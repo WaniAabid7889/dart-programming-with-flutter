@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget{
       title: 'FlutterApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
         textTheme: TextTheme(
-          headlineMedium: TextStyle(fontSize:15, fontFamily:'Montserrat', color: Colors.green),
-          headlineSmall: TextStyle(fontSize: 12, fontFamily:'Montserrat', color: Colors.blueGrey),
+          headlineMedium: TextStyle(fontSize:16, fontFamily:'Montserrat', color: Colors.black),
+          headlineSmall: TextStyle(fontSize: 12, fontFamily:'Montserrat', color: Colors.blue),
         )
       ),
       home: MyHomePage(),
@@ -40,14 +40,13 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Home Page "),
       ),
-      body: Column(
-          children: [
-            Text('Contact',style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.blueGrey),),
-            Text('leads',style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.green),),
-            Text('create new leads',style: Theme.of(context).textTheme.headlineSmall),
-            // Text('Check our UI is working or not', style: mTextStyle13(),)
-          ]
-      ),
+     body: Padding(
+       padding: const EdgeInsets.all(10),
+       child: Center(child: Card(
+            elevation: 4,
+           shadowColor: Colors.black38,
+           child: Text('hello Aabid',style: TextStyle(fontSize: 20),))),
+     ) ,
     );
   }
 }
@@ -58,6 +57,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
 /*
+Card widget
+
+
+Customer Style
+ body: Column(
+          children: [
+            Text('Contact',style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: Colors.blueGrey),),
+            Text('leads',style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.green),),
+            Text('create new leads',style: Theme.of(context).textTheme.headlineSmall),
+            // Text('Check our UI is working or not', style: mTextStyle13(),)
+          ]
+      ),
+
 //Circleavatar widget
 
 body: Center(
