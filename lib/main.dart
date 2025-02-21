@@ -37,7 +37,20 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Home Page "),
       ),
-      body: Center(
+      body: Center(child: Text('Hello Aabid',style: TextStyle(fontFamily:'Montserrat' ),)),
+    );
+  }
+}
+
+
+
+
+
+
+/*
+//Circleavatar widget
+
+body: Center(
           child: CircleAvatar(
             // child: Text('Name',style: TextStyle(color: Colors.blue,fontSize: 12),),
             child: Column(
@@ -57,19 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
             maxRadius: 100,
         ),
       ),
-    );
-  }
-}
-
-
-
-
-
-
-/*
-//Circleavatar widget
-
-
 // ListView.separated
 
 var arrNames = ['Abid','Hssain','Sahil','Nazil','Farddin','Amir','Ali','Rohit','Anayat','Anaya'];
