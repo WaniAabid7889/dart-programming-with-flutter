@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-void main(){
+void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
@@ -12,11 +12,7 @@ class MyApp extends StatelessWidget{
       title: 'FlutterApp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
-        textTheme: TextTheme(
-          headlineMedium: TextStyle(fontSize:16, fontFamily:'Montserrat', color: Colors.black),
-          headlineSmall: TextStyle(fontSize: 12, fontFamily:'Montserrat', color: Colors.blue),
-        )
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
       home: MyHomePage(),
     );
@@ -33,6 +29,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  var emailText = TextEditingController();
+  var passwordText = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,25 +39,99 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Home Page "),
       ),
-     body: Padding(
+      body: Center(
+          child: Container(
+                width: 300,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextField(
+                      keyboardType: TextInputType.number,
+                    controller: emailText,
+                    decoration: InputDecoration(
+                      hintText: 'Enter a Email',
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11),
+                        borderSide: BorderSide(
+                          color: Colors.deepOrange,
+                          width: 2
+                        )
+                      ) ,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11),
+                        borderSide: BorderSide(
+                          color: Colors.blue
+                        )
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11),
+                        borderSide: BorderSide(
+                          color: Colors.redAccent
+                        )
+                      ),
+                      // suffixText: "User Email..!",
+                      // suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.remove_red_eye)),
+                      prefixIcon: Icon(Icons.email,color: Colors.orange,)
+                    ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: TextField(
+                        keyboardType: TextInputType.text,
+                        controller: passwordText,
+                        obscureText: true,
+                        obscuringCharacter: '*',
+                        decoration: InputDecoration(
+                             hintText: 'Enter a Password',
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(11),
+                                borderSide: BorderSide(
+                                    color: Colors.deepOrange,
+                                    width: 2
+                                )
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(11),
+                            borderSide: BorderSide(
+                              color: Colors.blue
+                            )
+                          ),
+                            suffixIcon: Icon(Icons.remove_red_eye),
+                            prefixIcon: Icon(Icons.password)
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(onPressed: (){
+                        String uEmail = emailText.text.toString();
+                        String uPass = passwordText.text.toString();
+                        print("Email : $uEmail, Password : $uPass");
+                      }, child:Text('login',style: TextStyle(color: Colors.black),),
+
+                      ),
+                    )
+                  ],
+                )
+          ),
+      ),
+    );
+  }
+}
+
+/*
+TextField widget
+
+
+
+Card widget
+body: Padding(
        padding: const EdgeInsets.all(10),
        child: Center(child: Card(
             elevation: 4,
            shadowColor: Colors.black38,
            child: Text('hello Aabid',style: TextStyle(fontSize: 20),))),
      ) ,
-    );
-  }
-}
-
-
-
-
-
-
-/*
-Card widget
-
 
 Customer Style
  body: Column(
