@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'dart:io';
-// import 'package:image_picker/image_picker.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,9 +30,8 @@ class MyHomePage extends StatefulWidget {
   }
 }
 
-
 class _MyHomePageState extends State<MyHomePage> {
-  var time = DateTime.now();
+  DateTime? selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -44,25 +41,40 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Student Form"),
       ),
       body: Center(
-        child: Container(
-          width: 300,
-          height: 200,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Current Time: ${DateFormat('yMMMMEEEEd').format(time)}', style: TextStyle(fontSize: 25),),
-              ElevatedButton(onPressed: (){
-                setState(() {
-                  time = DateTime.now();
-                });
-              }, child: Text('Current Time'))
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              selectedDate == null
+                  ? 'Select Date'
+                  : 'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate!)}',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                DateTime? datePicked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now().isAfter(DateTime(2025)) ? DateTime(2025) : DateTime.now(),
+                  firstDate: DateTime(2021),
+                  lastDate: DateTime.now(),
+                );
+                if (datePicked != null) {
+                  setState(() {
+                    selectedDate = datePicked;
+                  });
+                  print('Current Date: ${DateFormat('yyyy-MM-dd').format(datePicked)}');
+                }
+              },
+              child: Text('Show DatePicker'),
+            )
+          ],
         ),
       ),
     );
   }
 }
+
 
 //  Future<void> pickImage() async {
 //     // final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
