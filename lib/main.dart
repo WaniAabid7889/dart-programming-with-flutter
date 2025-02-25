@@ -31,26 +31,9 @@ class MyHomePage extends StatefulWidget {
   }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  var emailText = TextEditingController();
-  var passwordText = TextEditingController();
-  var userName = TextEditingController();
-  var userAge = TextEditingController();
-  var userPhone = TextEditingController();
-  String? selectedGender;
-  var userDOB = TextEditingController();
-  var userAddress = TextEditingController();
-  File? _image;
 
-  Future<void> pickImage() async {
-    // final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    final pickedFile = Image.asset('assets/images/boy.jpg');
-    // if (pickedFile != null) {
-    //   setState(() {
-    //     _image = File(pickedFile);
-    //   });
-    // }
-  }
+class _MyHomePageState extends State<MyHomePage> {
+  var time = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -61,159 +44,186 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Container(
-          width: 300,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                buildTextField(userName, 'Enter user name', Icons.supervised_user_circle, TextInputType.text),
-                buildTextField(emailText, 'Enter user email', Icons.email, TextInputType.emailAddress),
-                buildPasswordField(),
-                buildTextField(userAge, 'Enter Age', Icons.calendar_today, TextInputType.number),
-                buildTextField(userPhone, 'Enter Phone No.', Icons.phone, TextInputType.phone),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: DropdownButtonFormField<String>(
-                    value: selectedGender,
-                    decoration: InputDecoration(
-                      labelText: 'Select Gender',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11),
-                      ),
-                    ),
-                    items: ['male', 'female', 'others'].map((gender) {
-                      return DropdownMenuItem<String>(
-                        value: gender,
-                        child: Text(gender),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedGender = value;
-                      });
-                    },
-                  ),
-                ),
-                buildTextField(userDOB, 'Enter DOB', Icons.calendar_today, TextInputType.datetime),
-                buildAddressField(),
-                buildImagePicker(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 300,
-                    alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        submitForm();
-                      },
-                      child: Text('Submit', style: TextStyle(color: Colors.black, fontSize: 16)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          width: 200,
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Current Time: $time.day', style: TextStyle(fontSize: 25),),
+              ElevatedButton(onPressed: (){
+                setState(() {
+                  time = DateTime.now();
+                });
+              }, child: Text('Current Time'))
+            ],
           ),
         ),
       ),
     );
-  }
-
-  Widget buildTextField(TextEditingController controller, String hintText, IconData icon, TextInputType keyboardType) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        decoration: InputDecoration(
-          hintText: hintText,
-          prefixIcon: Icon(icon),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(11),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildAddressField() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        controller: userAddress,
-        keyboardType: TextInputType.multiline,
-        maxLines: 3,
-        decoration: InputDecoration(
-          hintText: 'Enter your address',
-          prefixIcon: Icon(Icons.home),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(11),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildImagePicker() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          ElevatedButton(
-            onPressed: pickImage,
-            child: Text('Pick Image'),
-          ),
-          _image != null
-              ? Image.file(
-            _image!,
-            height: 100,
-          )
-              : Text('No image selected'),
-        ],
-      ),
-    );
-  }
-
-  Widget buildPasswordField() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        controller: passwordText,
-        obscureText: true,
-        obscuringCharacter: '*',
-        decoration: InputDecoration(
-          hintText: 'Enter a password',
-          prefixIcon: Icon(Icons.password),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(11),
-          ),
-        ),
-      ),
-    );
-  }
-
-  void submitForm() {
-    String uName = userName.text;
-    String uEmail = emailText.text;
-    String uPass = passwordText.text;
-    String uAge = userAge.text;
-    String uPhone = userPhone.text;
-    String uDOB = userDOB.text;
-    String uAddress = userAddress.text;
-
-    print("Name: $uName");
-    print("Email: $uEmail");
-    print("Password: $uPass");
-    print("Age: $uAge");
-    print("Phone: $uPhone");
-    print("Gender: ${selectedGender ?? 'Not selected'}");
-    print("DOB: $uDOB");
-    print("Address: $uAddress");
-    print("Image: ${_image?.path ?? 'No image selected'}");
   }
 }
 
-
-
+//  Future<void> pickImage() async {
+//     // final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+//     final pickedFile = Image.asset('assets/images/boy.jpg');
+//     // if (pickedFile != null) {
+//     //   setState(() {
+//     //     _image = File(pickedFile);
+//     //   });
+//     // }
+//   }
+//   body: Center(
+//   child: Container(
+//   width: 300,
+//   child: SingleChildScrollView(
+//   child: Column(
+//   mainAxisAlignment: MainAxisAlignment.center,
+//   children: [
+//   buildTextField(userName, 'Enter user name', Icons.supervised_user_circle, TextInputType.text),
+//   buildTextField(emailText, 'Enter user email', Icons.email, TextInputType.emailAddress),
+//   buildPasswordField(),
+//   buildTextField(userAge, 'Enter Age', Icons.calendar_today, TextInputType.number),
+//   buildTextField(userPhone, 'Enter Phone No.', Icons.phone, TextInputType.phone),
+//   Padding(
+//   padding: const EdgeInsets.all(8.0),
+//   child: DropdownButtonFormField<String>(
+//   value: selectedGender,
+//   decoration: InputDecoration(
+//   labelText: 'Select Gender',
+//   border: OutlineInputBorder(
+//   borderRadius: BorderRadius.circular(11),
+//   ),
+//   ),
+//   items: ['male', 'female', 'others'].map((gender) {
+//   return DropdownMenuItem<String>(
+//   value: gender,
+//   child: Text(gender),
+//   );
+//   }).toList(),
+//   onChanged: (value) {
+//   setState(() {
+//   selectedGender = value;
+//   });
+//   },
+//   ),
+//   ),
+//   buildTextField(userDOB, 'Enter DOB', Icons.calendar_today, TextInputType.datetime),
+//   buildAddressField(),
+//   buildImagePicker(),
+//   Padding(
+//   padding: const EdgeInsets.all(8.0),
+//   child: Container(
+//   width: 300,
+//   alignment: Alignment.bottomRight,
+//   child: ElevatedButton(
+//   onPressed: () {
+//   submitForm();
+//   },
+//   child: Text('Submit', style: TextStyle(color: Colors.black, fontSize: 16)),
+//   ),
+//   ),
+//   ),
+//   ],
+//   ),
+//   ),
+//   ),
+//   ),
+//
+//   Widget buildTextField(TextEditingController controller, String hintText, IconData icon, TextInputType keyboardType) {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: TextField(
+//         controller: controller,
+//         keyboardType: keyboardType,
+//         decoration: InputDecoration(
+//           hintText: hintText,
+//           prefixIcon: Icon(icon),
+//           border: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(11),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//
+//   Widget buildAddressField() {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: TextField(
+//         controller: userAddress,
+//         keyboardType: TextInputType.multiline,
+//         maxLines: 3,
+//         decoration: InputDecoration(
+//           hintText: 'Enter your address',
+//           prefixIcon: Icon(Icons.home),
+//           border: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(11),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//
+//   Widget buildImagePicker() {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Column(
+//         children: [
+//           ElevatedButton(
+//             onPressed: pickImage,
+//             child: Text('Pick Image'),
+//           ),
+//           _image != null
+//               ? Image.file(
+//             _image!,
+//             height: 100,
+//           )
+//               : Text('No image selected'),
+//         ],
+//       ),
+//     );
+//   }
+//
+//   Widget buildPasswordField() {
+//     return Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: TextField(
+//         controller: passwordText,
+//         obscureText: true,
+//         obscuringCharacter: '*',
+//         decoration: InputDecoration(
+//           hintText: 'Enter a password',
+//           prefixIcon: Icon(Icons.password),
+//           border: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(11),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+//
+//   void submitForm() {
+//     String uName = userName.text;
+//     String uEmail = emailText.text;
+//     String uPass = passwordText.text;
+//     String uAge = userAge.text;
+//     String uPhone = userPhone.text;
+//     String uDOB = userDOB.text;
+//     String uAddress = userAddress.text;
+//     print("Name: $uName");
+//     print("Email: $uEmail");
+//     print("Password: $uPass");
+//     print("Age: $uAge");
+//     print("Phone: $uPhone");
+//     print("Gender: ${selectedGender ?? 'Not selected'}");
+//     print("DOB: $uDOB");
+//     print("Address: $uAddress");
+//     print("Image: ${_image?.path ?? 'No image selected'}");
+//   }
+// }
+//
+//
+//
 
 
 // import 'package:flutter/material.dart';
