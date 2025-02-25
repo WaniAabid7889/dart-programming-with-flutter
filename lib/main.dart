@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'dart:io';
 // import 'package:image_picker/image_picker.dart';
 
@@ -44,12 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Container(
-          width: 200,
+          width: 300,
           height: 200,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Current Time: $time.day', style: TextStyle(fontSize: 25),),
+              Text('Current Time: ${DateFormat('yMMMMEEEEd').format(time)}', style: TextStyle(fontSize: 25),),
               ElevatedButton(onPressed: (){
                 setState(() {
                   time = DateTime.now();
